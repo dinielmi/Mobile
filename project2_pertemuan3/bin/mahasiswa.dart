@@ -34,7 +34,7 @@ void main() {
   });
 
   // Tampilkan hasil akhir
-print('\nDaftar Mahasiswa dan Kategorinya(Grade):');
+  print('\nDaftar Mahasiswa dan Kategorinya(Grade):');
   print('+----------------------+-------+');
   print('| Nama Mahasiswa       | Grade |');
   print('+----------------------+-------+');
