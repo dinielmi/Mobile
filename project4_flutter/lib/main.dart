@@ -157,7 +157,6 @@ class DeeApp extends StatelessWidget {
                   ),
                 ),
                               const SizedBox(height: 30),
-
               // judul lagu
               const Text(
                 "3AM - Rose",
@@ -167,10 +166,10 @@ class DeeApp extends StatelessWidget {
                   color: Color(0xFFB22222),
                 ),
               ),
-                const SizedBox(height: 20),
+               SizedBox(height: 20),
 
                 // lirik
-                const Text(
+               Text(
                   """
 
 Eh-eh eh-eh eh-eh
