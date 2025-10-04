@@ -27,41 +27,57 @@ class _DeeAppState extends State<DeeApp> {
     setState(() => _selectedIndex = index);
   }
 
-  void _addProject() {
-    String newProject = "";
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Add New Project"),
-          content: TextField(
-            decoration: const InputDecoration(
-              hintText: "Project Name",
-            ),
-            onChanged: (value) => newProject = value,
+void _addProject() {
+  String newProject = "";
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFF536878), // 🟦 Payne’s Grey (background)
+        title: const Text(
+          "Add New Project",
+          style: TextStyle(color: Color(0xFFFFCDC1)), // 🌸 Melon (teks)
+        ),
+        content: TextField(
+          style: const TextStyle(color: Color(0xFFFFCDC1)), 
+          cursorColor: Color(0xFFFFCDC1), 
+          decoration: const InputDecoration(
+            hintText: "Project Name",
+            hintStyle: TextStyle(color: Color(0xFFFFCDC1)), 
+            border: UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFFFCDC1)), // underline pink selalu
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
+          ),
+          onChanged: (value) => newProject = value,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              "Cancel",
+              style: TextStyle(color: Color(0xFFFFCDC1)), // teks pink
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (newProject.isNotEmpty) {
-                  setState(() {
-                    _counter++;
-                    _projectList.add(newProject);
-                  });
-                }
-                Navigator.pop(context);
-              },
-              child: const Text("Save"),
+          ),
+          TextButton(
+            onPressed: () {
+              if (newProject.isNotEmpty) {
+                setState(() {
+                  _counter++;
+                  _projectList.add(newProject);
+                });
+              }
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Save",
+              style: TextStyle(color: Color(0xFFFFCDC1)), // teks pink
             ),
-          ],
-        );
-      },
-    );
-  }
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +89,9 @@ class _DeeAppState extends State<DeeApp> {
             fontWeight: FontWeight.bold,
             color:Color(0xFFFFCDC1),
           ),
+          ),
+          iconTheme: const IconThemeData(
+            color: Color(0xFFFFCDC1), 
           ),
           backgroundColor: Color.fromARGB(255, 83, 104, 120),
         ),
@@ -122,11 +141,13 @@ class _DeeAppState extends State<DeeApp> {
       body:
           _selectedIndex == 0 ? _buildProfile() : _buildProjectCounter(),
       floatingActionButton: _selectedIndex == 1
-          ? FloatingActionButton(
-              onPressed: _addProject,
-              child: const Icon(Icons.add),
-            )
-          : null,
+      ? FloatingActionButton(
+          onPressed: _addProject,
+          backgroundColor: const Color(0xFF536878), // 🔹 Payne’s Grey (warna tombol)
+          foregroundColor: const Color(0xFFFFCDC1), // 🔹 Melon (warna ikon di atas tombol)
+          child: const Icon(Icons.add),
+        )
+      : null,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
