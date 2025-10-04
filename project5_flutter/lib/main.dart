@@ -35,7 +35,7 @@ class Deeapp extends StatelessWidget {
                           ],
                         ),
                       Image.asset("assets/image/rojeh.png", width: 150, height: 150,),
-                      const Text("This is Rose first album, rosie",
+                      const Text("This is Rose second album, rosie",
                           style: TextStyle(
                           fontSize: 16,                   
                           fontWeight: FontWeight.bold, 
