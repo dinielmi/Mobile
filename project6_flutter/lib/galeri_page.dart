@@ -12,23 +12,74 @@ class GaleriPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
-      appBar: AppBar(title: Text('Galeri Mahasiswa'),  backgroundColor: Colors.blueAccent),
+      backgroundColor: const Color(0xFFEDE6CA), // cream background
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF45531), // orange terang
+        title: const Text(
+          'Galeri Mahasiswa',
+          style: TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(12),
         child: GridView.count(
           crossAxisCount: 2,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
           children: imagePaths.map((path) {
             return Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4)],
+                borderRadius: BorderRadius.circular(18),
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFEDE6CA), // cream lembut di atas
+                    Color(0xFF443842), // ungu gelap ke bawah
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 6,
+                    offset: Offset(2, 4),
+                  ),
+                ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(path, fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(18),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Gambar utama
+                    Image.asset(path, fit: BoxFit.cover),
+
+                    // Overlay gradasi halus di atas gambar
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.25),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+
+                    // Ikon favorit di pojok kanan atas
+                    const Positioned(
+                      top: 8,
+                      right: 8,
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: Color(0xFFF45531), // orange
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           }).toList(),

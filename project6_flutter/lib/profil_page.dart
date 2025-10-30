@@ -5,9 +5,9 @@ class ProfilPage extends StatelessWidget {
     'Pemrograman Mobile',
     'Business Intelligence',
     'Audit Sistem Informasi',
-    'Metodelogi Penelitian',
+    'Metodologi Penelitian',
     'Manajemen Rantai Pasok',
-    'Pengelolaaan Sumberdaya',
+    'Pengelolaan Sumber Daya',
     'Penjaminan Mutu Perangkat Lunak',
     'Manajemen Proyek',
   ];
@@ -15,46 +15,58 @@ class ProfilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
-      appBar: AppBar(title: Text('Profil Mahasiswa'),  backgroundColor: Colors.blueAccent),
+      backgroundColor: const Color(0xFFEDE6CA), // Cream background
+      appBar: AppBar(
+        title: const Text('Profil Mahasiswa'),
+        backgroundColor: const Color(0xFFF45531), // Orange
+        iconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Foto dan data diri dalam dua box terpisah
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Box foto
+                // Box Foto
                 Container(
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.blue[50],
+                    color: const Color(0xFFF7EED3),
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4)],
-                    image: DecorationImage(
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(2, 3)),
+                    ],
+                    image: const DecorationImage(
                       image: AssetImage('assets/image/profile.jpeg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
-                // Box data diri
+                const SizedBox(width: 16),
+                // Box Data Diri
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.blue[50],
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4)],
+                      boxShadow: const [
+                        BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(2, 3)),
+                      ],
                     ),
-                    child: Column(
+                    child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Nama \t\t\t\t: Dee Elminingtyas'),
-                        Text('NIM \t\t\t\t\t\t\t: 123456789'),
-                        Text('Jurusan \t: Teknologi Infromasi'),
+                        Text('Nama: Dee Elminingtyas'),
+                        Text('NIM: 123456789'),
+                        Text('Jurusan: Teknologi Informasi'),
                         Text('Politeknik Negeri Malang'),
                       ],
                     ),
@@ -62,38 +74,67 @@ class ProfilPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
 
-            // Judul mata kuliah dengan garis atas dan bawah
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.grey),
-                  bottom: BorderSide(color: Colors.grey),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  'Mata Kuliah Semester 5',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            SizedBox(height: 12),
-
-            // List mata kuliah
+            // ------------------------------
+            // CARD MATA KULIAH SEMESTER 5
+            // ------------------------------
             Expanded(
-              child: ListView.builder(
-                itemCount: mataKuliah.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      leading: Icon(Icons.book),
-                      title: Text(mataKuliah[index]),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFFF7EED3),
+                      Color(0xFFF45531), // ungu gelap di bawah
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0xFFF45531)),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Mata Kuliah Semester 5',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFF45531), // orange
+                        ),
+                      ),
                     ),
-                  );
-                },
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: mataKuliah.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            color: const Color(0xFFF9F3E1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 3,
+                            margin: const EdgeInsets.symmetric(vertical: 4),
+                            child: ListTile(
+                              leading: const Icon(Icons.book, color: Color(0xFFF45531)),
+                              title: Text(
+                                mataKuliah[index],
+                                style: const TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
